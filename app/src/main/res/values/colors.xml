@@ -2,6 +2,8 @@
 <resources>
     <color name="blue_main">#387FC2</color>
     <color name="blue_secondary">#5D98D0</color>
+    <color name="disabled">#ACB3C7</color>
+    <color name="disabled_text">#696F76</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 </resources>
