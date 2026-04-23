@@ -1,5 +1,6 @@
 plugins {
     alias(libs.plugins.android.application)
+    alias(libs.plugins.android.firebase)
 }
 
 android {
@@ -51,4 +52,7 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+    implementation(libs.firebaseBom)
+    implementation(libs.firebase.firestore)
+    implementation(libs.firebase.auth)
 }
