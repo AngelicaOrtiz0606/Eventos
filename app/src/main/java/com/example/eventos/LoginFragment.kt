@@ -55,15 +55,15 @@ class LoginFragment : Fragment() {
     }
 
     private fun validateFields() {
-        val numCuenta = binding.usernameEdit.text.toString().trim()
+        val email = binding.usernameEdit.text.toString().trim()
         val password = binding.passwordEdit.text.toString().trim()
 
-        val isAccountValid = numCuenta.length == 9
+        val isEmailValid = android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()
         val isPasswordValid = password.length >= 8
 
-        // Validación número de cuenta
-        if (numCuenta.isNotEmpty() && !isAccountValid) {
-            binding.usernameLayout.error = "Debe tener 9 dígitos"
+        // Validación correo electrónico
+        if (email.isNotEmpty() && !isEmailValid) {
+            binding.usernameLayout.error = "Correo electrónico no válido"
         } else {
             binding.usernameLayout.error = null
         }
@@ -77,9 +77,9 @@ class LoginFragment : Fragment() {
 
         // Activar botón solo si todo es válido
         binding.loginButton.isEnabled =
-            numCuenta.isNotEmpty() &&
+            email.isNotEmpty() &&
                     password.isNotEmpty() &&
-                    isAccountValid &&
+                    isEmailValid &&
                     isPasswordValid
     }
 
