@@ -13,6 +13,8 @@ navigationUiKtx = "2.9.7"
 lottie = "6.7.1"
 firebaseBom = "34.12.0"
 firebase = "4.4.4"
+kotlin = "2.0.0"
+coroutinesCore = "1.7.3"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -26,11 +28,16 @@ androidx-constraintlayout = { group = "androidx.constraintlayout", name = "const
 androidx-navigation-fragment-ktx = { group = "androidx.navigation", name = "navigation-fragment-ktx", version.ref = "navigationFragmentKtx" }
 androidx-navigation-ui-ktx = { group = "androidx.navigation", name = "navigation-ui-ktx", version.ref = "navigationUiKtx" }
 lottie = {group = "com.airbnb.android", name ="lottie", version.ref="lottie" }
-firebaseBom = {group = "com.google.firebase", name = "firebase-bom", version.ref = "firebaseBom"}
-firebase-firestore = {group = "com.google.firebase", name = "firebase-firestore"}
-firebase-auth = {group = "com.google.firebase", name = "firebase-auth"}
+firebase-bom = { group = "com.google.firebase", name = "firebase-bom", version.ref = "firebaseBom"}
+firebase-firestore = { group = "com.google.firebase", name = "firebase-firestore"}
+firebase-auth = { group = "com.google.firebase", name = "firebase-auth"}
+coroutines-core = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-core", version.ref = "coroutinesCore" }
+coroutines-android = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-android", version.ref = "coroutinesCore" }
+
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
 android-firebase = { id = "com.google.gms.google-services", version.ref = "firebase"}
+kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+firebase = { id = "com.google.gms.google-services", version.ref = "firebase"}
 
