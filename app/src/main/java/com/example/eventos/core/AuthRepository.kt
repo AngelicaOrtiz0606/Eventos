@@ -38,11 +38,11 @@ class AuthRepository(): Authentication {
         password: String
     ): ResponseService<FirebaseUser> = withContext(Dispatchers.IO) {
         try {
-            val result = auth.signInWithEmailAndPassword(email, password).await()
-            result.user?.let { ResponseService.Success(it)}
+            val result = auth.createUserWithEmailAndPassword(email, password).await() // ← esto estaba mal
+            result.user?.let { ResponseService.Success(it) }
                 ?: ResponseService.Error("No se pudo crear el usuario")
-        } catch (e: FirebaseAuthUserCollisionException){
-            ResponseService.Error("Este número de cuenta ya está registrado")
+        } catch (e: FirebaseAuthUserCollisionException) {
+            ResponseService.Error("Este correo ya está registrado")
         } catch (e: FirebaseAuthWeakPasswordException) {
             ResponseService.Error("La contraseña es muy débil")
         } catch (e: Exception) {
