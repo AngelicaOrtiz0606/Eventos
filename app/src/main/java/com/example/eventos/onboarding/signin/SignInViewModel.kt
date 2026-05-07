@@ -1,4 +1,4 @@
-package com.example.eventos
+package com.example.eventos.onboarding.signin
 
 import android.util.Patterns
 import androidx.lifecycle.ViewModel

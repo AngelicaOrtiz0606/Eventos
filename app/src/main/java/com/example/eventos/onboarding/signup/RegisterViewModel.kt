@@ -1,4 +1,4 @@
-package com.example.eventos.core.singup
+package com.example.eventos.onboarding.signup
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
