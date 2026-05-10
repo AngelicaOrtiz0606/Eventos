@@ -9,6 +9,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
+import android.util.Patterns
 
 class RegisterViewModel: ViewModel() {
 
@@ -17,11 +18,15 @@ class RegisterViewModel: ViewModel() {
     private val _registerState = MutableStateFlow<ResponseService<FirebaseUser>?>(null)
     val registerState : StateFlow<ResponseService<FirebaseUser>?> = _registerState.asStateFlow()
 
-    fun validateEmail(email: String): String ? {
+    fun validateEmail(email: String): String? {
+        if (email.isBlank()) return "El correo es requerido"
+        if (!android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) return "Correo inválido"
         return null
     }
 
-    fun validatePassword(password: String): String ? {
+    fun validatePassword(password: String): String? {
+        if (password.isBlank()) return "La contraseña es requerida"
+        if (password.length < 8) return "Mínimo 8 caracteres"
         return null
     }
 

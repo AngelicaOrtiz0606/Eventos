@@ -16,6 +16,7 @@ import com.example.eventos.core.ResponseService
 import com.example.eventos.databinding.FragmentRegisterBinding
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.launch
+import com.example.eventos.R
 
 class RegisterFragment : Fragment() {
 
@@ -76,7 +77,7 @@ class RegisterFragment : Fragment() {
                         }
                         is ResponseService.Success -> {
                             communicator.manageLoader(false)
-                            // TODO: navegar a siguiente pantalla
+                            findNavController().navigate(R.id.action_registerFragment_to_personalInfoFragment)
                         }
                         is ResponseService.Error -> {
                             communicator.manageLoader(false)
