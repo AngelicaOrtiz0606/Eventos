@@ -36,6 +36,7 @@ class PersonalInfoFragment : Fragment() {
     ): View {
         _binding = FragmentPersonalInfoBinding.inflate(inflater, container, false)
         communicator = requireActivity() as FragmentCommunicator
+        communicator.manageLoader(false)
         setupValidation()
         setupDatePicker()
         setupClickListeners()
