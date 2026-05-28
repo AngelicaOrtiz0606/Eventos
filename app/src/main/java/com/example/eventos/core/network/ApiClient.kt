@@ -6,7 +6,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 object ApiClient {
-    private const val BASE_URL = "https://"
+    private const val BASE_URL = "https://e395ff3bd9f04e62afd40aa13e600427"
 
     // 1. Agregamos los paréntesis () para crear la instancia
     // 2. Configuramos el nivel a BODY para ver el contenido json
@@ -20,7 +20,7 @@ object ApiClient {
         .build()
 
     // 4. Configuramos Retrofit usando ese cliente
-    val EventoAPI: EventoAPI by lazy {
+    val EventoApi: EventoAPI by lazy {
         Retrofit.Builder()
             .baseUrl(BASE_URL)
             .client(client)
