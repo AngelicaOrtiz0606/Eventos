@@ -6,7 +6,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 object ApiClient {
-    private const val BASE_URL = "https://e395ff3bd9f04e62afd40aa13e600427"
+    private const val BASE_URL = "https://e395ff3bd9f04e62afd40aa13e600427.api.mockbin.io"
 
     // 1. Agregamos los paréntesis () para crear la instancia
     // 2. Configuramos el nivel a BODY para ver el contenido json
