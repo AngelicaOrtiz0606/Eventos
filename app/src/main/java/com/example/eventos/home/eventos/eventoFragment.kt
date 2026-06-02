@@ -10,6 +10,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.eventos.core.FragmentCommunicator
 import com.example.eventos.core.ResponseService
 import com.example.eventos.databinding.FragmentEventoBinding // Nombre corregido
@@ -23,12 +24,20 @@ class EventosFragment : Fragment() {
     private val viewModel by viewModels<EventosViewModel>()
     private lateinit var communicator: FragmentCommunicator
 
+    /* Con las llaves indico que se va a ejecutar la lambda al crear el adapter  */
+    private val adapter = EventosAdapter { evento ->
+
+    }
+
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentEventoBinding.inflate(inflater, container, false)
         communicator = requireActivity() as FragmentCommunicator // Corregido typo
+        binding.rvEventos.layoutManager = LinearLayoutManager(requireContext()) /*Acá lo ponemos lineal*/
+        binding.rvEventos.adapter = adapter
         observeState()
         viewModel.loadEventos()
         return binding.root
@@ -44,7 +53,7 @@ class EventosFragment : Fragment() {
                         }
                         is ResponseService.Success -> {
                             communicator.manageLoader(false)
-                            Log.i("EventosFragment", "Eventos List: ${state.data}")
+                            adapter.submitList(state.data) /*Se cambió para que se muestre la lista*/
                         }
                         is ResponseService.Error -> {
                             communicator.manageLoader(false)
