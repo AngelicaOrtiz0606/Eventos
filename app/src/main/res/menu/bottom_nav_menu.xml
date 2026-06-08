@@ -2,8 +2,12 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/eventosFragment"
-        android:icon="@drawable/eventos_ic"
+        android:icon="@drawable/ic_calendar_modern"
         android:title="Eventos" />
+    <item
+        android:id="@+id/myEventosFragment"
+        android:icon="@drawable/ic_calendar_modern"
+        android:title="Mis Eventos" />
     <item
         android:id="@+id/accountFragment"
         android:icon="@drawable/account_ic"

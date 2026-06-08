@@ -18,15 +18,15 @@
         android:padding="12dp">
 
         <!-- Imagen del Evento (Glide) -->
-        <com.google.android.material.imageview.ShapeableImageView
+        <ImageView
             android:id="@+id/ivEvento"
             android:layout_width="110dp"
             android:layout_height="110dp"
             android:scaleType="centerCrop"
+            android:contentDescription="@string/app_name"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:shapeAppearanceOverlay="@style/ShapeAppearance.MaterialComponents.SmallComponent" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <!-- Tag de Categoría -->
         <TextView

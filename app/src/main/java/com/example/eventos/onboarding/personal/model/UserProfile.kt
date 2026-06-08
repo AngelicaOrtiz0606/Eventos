@@ -5,5 +5,6 @@ data class UserProfile(
     val firstName: String = "",
     val lastName: String = "",
     val phone: String = "",
-    val birthDate: String = ""
+    val birthDate: String = "",
+    val studentId: String = "" // Número de cuenta (9 dígitos)
 )

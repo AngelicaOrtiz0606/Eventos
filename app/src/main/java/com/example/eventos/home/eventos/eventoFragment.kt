@@ -1,7 +1,6 @@
 package com.example.eventos.home.eventos
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -10,10 +9,12 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.eventos.R
 import com.example.eventos.core.FragmentCommunicator
 import com.example.eventos.core.ResponseService
-import com.example.eventos.databinding.FragmentEventoBinding // Nombre corregido
+import com.example.eventos.databinding.FragmentEventoBinding
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.launch
 
@@ -24,26 +25,30 @@ class EventosFragment : Fragment() {
     private val viewModel by viewModels<EventosViewModel>()
     private lateinit var communicator: FragmentCommunicator
 
-    /* Con las llaves indico que se va a ejecutar la lambda al crear el adapter  */
     private val adapter = EventosAdapter { evento ->
-
+        val bundle = Bundle().apply {
+            putParcelable("evento", evento)
+        }
+        findNavController().navigate(
+            R.id.action_eventosFragment_to_eventoDetailFragment,
+            bundle
+        )
     }
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentEventoBinding.inflate(inflater, container, false)
-        communicator = requireActivity() as FragmentCommunicator // Corregido typo
-        binding.rvEventos.layoutManager = LinearLayoutManager(requireContext()) /*Acá lo ponemos lineal*/
+        communicator = requireActivity() as FragmentCommunicator
+        binding.rvEventos.layoutManager = LinearLayoutManager(requireContext())
         binding.rvEventos.adapter = adapter
         observeState()
         viewModel.loadEventos()
         return binding.root
     }
 
-    fun observeState(){ // Cambiado a private y llaves corregidas
+    private fun observeState(){
         viewLifecycleOwner.lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED){
                 viewModel.eventoState.collect { state ->
@@ -53,7 +58,7 @@ class EventosFragment : Fragment() {
                         }
                         is ResponseService.Success -> {
                             communicator.manageLoader(false)
-                            adapter.submitList(state.data) /*Se cambió para que se muestre la lista*/
+                            adapter.submitList(state.data)
                         }
                         is ResponseService.Error -> {
                             communicator.manageLoader(false)

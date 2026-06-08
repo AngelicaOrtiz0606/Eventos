@@ -37,22 +37,37 @@ class PersonalInfoViewModel : ViewModel() {
         return null
     }
 
+    fun validateStudentId(value: String): String? {
+        if (value.isBlank()) return "El número de cuenta es requerido"
+        if (value.length != 9) return "Debe tener exactamente 9 dígitos"
+        if (!value.all { it.isDigit() }) return "Solo números"
+        return null
+    }
+
     fun validateBirthDate(value: String): String? {
         if (value.isBlank()) return "Selecciona tu fecha de nacimiento"
         return null
     }
 
-    fun isFormValid(firstName: String, lastName: String, phone: String, birthDate: String): Boolean {
+    fun isFormValid(firstName: String, lastName: String, phone: String, studentId: String, birthDate: String): Boolean {
         return validateFirstName(firstName) == null &&
                 validateLastName(lastName) == null &&
                 validatePhone(phone) == null &&
+                validateStudentId(studentId) == null &&
                 validateBirthDate(birthDate) == null
     }
 
-    fun saveProfile(uid: String, firstName: String, lastName: String, phone: String, birthDate: String) {
+    fun saveProfile(uid: String, firstName: String, lastName: String, phone: String, studentId: String, birthDate: String) {
         viewModelScope.launch {
             _saveState.value = ResponseService.Loading
-            val user = UserProfile(id = uid, firstName = firstName, lastName = lastName, phone = phone, birthDate = birthDate)
+            val user = UserProfile(
+                id = uid, 
+                firstName = firstName, 
+                lastName = lastName, 
+                phone = phone, 
+                studentId = studentId,
+                birthDate = birthDate
+            )
             _saveState.value = repository.saveUserInfo(user)
         }
     }

@@ -48,6 +48,7 @@ class PersonalInfoFragment : Fragment() {
         binding.firstNameEdit.addTextChangedListener { validateAndEnable() }
         binding.lastNameEdit.addTextChangedListener { validateAndEnable() }
         binding.phoneEdit.addTextChangedListener { validateAndEnable() }
+        binding.studentIdEdit.addTextChangedListener { validateAndEnable() }
         binding.dobEdit.addTextChangedListener { validateAndEnable() }
     }
 
@@ -55,15 +56,17 @@ class PersonalInfoFragment : Fragment() {
         val firstName = binding.firstNameEdit.text.toString().trim()
         val lastName = binding.lastNameEdit.text.toString().trim()
         val phone = binding.phoneEdit.text.toString().trim()
+        val studentId = binding.studentIdEdit.text.toString().trim()
         val birthDate = binding.dobEdit.text.toString().trim()
 
         binding.firstNameLayout.error = viewModel.validateFirstName(firstName)
         binding.lastNameLayout.error = viewModel.validateLastName(lastName)
         binding.phoneLayout.error = viewModel.validatePhone(phone)
+        binding.studentIdLayout.error = viewModel.validateStudentId(studentId)
         binding.dobLayout.error = viewModel.validateBirthDate(birthDate)
 
         binding.continueButton.isEnabled =
-            viewModel.isFormValid(firstName, lastName, phone, birthDate)
+            viewModel.isFormValid(firstName, lastName, phone, studentId, birthDate)
     }
 
     private fun setupDatePicker() {
@@ -95,6 +98,7 @@ class PersonalInfoFragment : Fragment() {
                 firstName = binding.firstNameEdit.text.toString().trim(),
                 lastName = binding.lastNameEdit.text.toString().trim(),
                 phone = binding.phoneEdit.text.toString().trim(),
+                studentId = binding.studentIdEdit.text.toString().trim(),
                 birthDate = binding.dobEdit.text.toString().trim()
             )
         }
