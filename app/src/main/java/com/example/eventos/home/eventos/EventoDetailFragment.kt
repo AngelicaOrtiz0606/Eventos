@@ -62,6 +62,23 @@ class EventoDetailFragment : Fragment() {
         binding.tvDetailDescription.text = evento.descripcion
         binding.tvDetailType.text = evento.tipo.uppercase()
 
+        // Bind Fecha y Hora
+        if (evento.fechasEvento.isNotEmpty()) {
+            val fechaInfo = evento.fechasEvento[0]
+            binding.tvDetailDate.text = fechaInfo.fecha
+            
+            if (fechaInfo.horarios.isNotEmpty()) {
+                val horario = fechaInfo.horarios[0]
+                binding.tvDetailTime.text = "${horario.horaInicio} - ${horario.horaFin} hrs"
+                binding.layoutTime.isVisible = true
+            } else {
+                binding.layoutTime.isVisible = false
+            }
+        } else {
+            binding.tvDetailDate.text = "Límite: ${evento.fechaLimiteInscripcion ?: "N/A"}"
+            binding.layoutTime.isVisible = false
+        }
+
         // Verificar si ya está inscrito
         checkIfAlreadyRegistered(evento)
 
